@@ -6,7 +6,7 @@ var mainBox = document.getElementById("main-content");
 var questionBox = document.getElementById("question-box");
 var questionText = document.getElementById("question-text");
 var answerEvent = document.getElementById("answer-event");
-
+var highScoreForm = document.getElementById("highscore-form");
 
 var timeLeft = 100;
 var showMode = "game";
@@ -68,10 +68,10 @@ function runQuestion1(){
     answerEvent.appendChild(answer3);
     answerEvent.appendChild(answer4);
 
-    answer1.textContent = "un ananas";
-    answer2.textContent = "un pamplemousse";
-    answer3.textContent = "une pinpomme";
-    answer4.textContent = "une pinape";
+    answer1.textContent = "1. un ananas";
+    answer2.textContent = "2. un pamplemousse";
+    answer3.textContent = "3. une pinpomme";
+    answer4.textContent = "4. une pinape";
 
     answerEvent.addEventListener("click", function(){
         console.log("Voila, c'est magnifique")
