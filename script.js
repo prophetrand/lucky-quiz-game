@@ -1,12 +1,27 @@
-
+var timeDisplay = document.getElementById("timer");
+var highScoreButton = document.getElementById("highScoreView");
+var startButton = document.getElementById("start-button");
 
 var timeLeft = 90;
 
+// declaring the empty variable countdown on the global scope to serve as the target of setInterval, and to be accessible outside of function scope. 
 var countdown;
 
+function startGame(){
+    countdown = setInterval(function(){
+    timeLeft--;
+    timeDisplay.textContent = timeLeft;
 
-// consider which function to put this inside of if necessary. Might be fine on the global scope but since countdown was initially declared on the global scope, i can mess with it from inside multiple different functions.
-countdown = setInterval(function(){
-timeLeft--;
+    if (timeLeft === 0){
+        clearInterval(countdown);
+        alert("Game Over! Score ZERO")
+        gameOver();
+    }
 
-}, 1000);
+    }, 1000);
+}
+
+function gameOver(){
+
+}
+startButton.addEventListener("click", startGame)

@@ -5,3 +5,12 @@
 #timer {
     float: right;
 }
+
+header {
+    background-color: maroon;
+    margin: 15px;
+}
+
+main {
+    text-align: center;
+}
