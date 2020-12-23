@@ -10,6 +10,8 @@ var message = document.getElementById("correct-message");
 var endScreen = document.getElementById("end-screen");
 var highScoreForm = document.getElementById("highscore-form");
 var allScores = document.getElementById("all-scores");
+var scoresList = document.getElementById("scores-list");
+var initials = document.getElementById("initials");
 
 var timeLeft = 81;
 var showMode = "game";
@@ -31,7 +33,7 @@ answerEvent.children[3].appendChild(answer4);
 
 startButton.addEventListener("click", startGame);
 highScoreButton.addEventListener("click", viewHighScores);
-highScoreForm.addEventListener("submit", addToList());
+highScoreForm.addEventListener("submit", addToList);
 
 function startGame(){
     // this line below hides the contents of <main> to prepare the page for population by the quiz questions in <section id="question-box"></section>
@@ -58,6 +60,7 @@ function gameOver(){
     questionBox.setAttribute("style", "display: none");
     endScreen.setAttribute("style", "display: block");
     endScreen.children[0].textContent = "Your score is: " + timeLeft;
+    timeDisplay.textContent = timeLeft;
 }
 
 function viewHighScores(){
@@ -67,16 +70,25 @@ function viewHighScores(){
         allScores.setAttribute("style", "display: block");
         showMode = "scores";
     } else {
-        mainBox.setAttribute("style", "display: block");
         highScoreButton.textContent = "View High Scores";
+        mainBox.setAttribute("style", "display: block");
         allScores.setAttribute("style", "display: none");
+        questionBox.setAttribute("style", "display: none");
+        endScreen.setAttribute("style", "display: none");
         showMode = "game";
     }
     
 }
 
-function addToList(){
-    
+function addToList(event){
+    event.preventDefault();
+
+    var scoreItem = document.createElement("li");
+    scoreItem.textContent = initials.value + " : " + timeLeft;
+    scoresList.appendChild(scoreItem);
+    allScores.setAttribute("style", "display: block");
+
+    localStorage.setItem("Player and Score", scoreItem.textContent)
 }
 
 function runQuestion1(){
@@ -270,13 +282,3 @@ function bigQ8(event){
     alert("Game Complete! You have answered all questions!")
     gameOver();
 }
-
-// The following will be useful for creating a form for high score name entry, and was taken from 12-Ins_Preventing_Default_Events
-{/* <form >
-    <input placeholder="name" id="name" />
-    <input placeholder="email" id="email" />
-    <button id="submit">Submit</button>
-    <div>
-      <h4 id="response"></h4>
-    </div>
-</form> */}

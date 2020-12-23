@@ -55,3 +55,7 @@ section div button {
     background-color: maroon;
     color: #F0FFF0;
 }
+
+#all-scores {
+    text-align: center;
+}
