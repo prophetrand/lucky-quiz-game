@@ -40,6 +40,7 @@ section div button {
     background-color: maroon;
     color: #F0FFF0;
     display: block;
+    width: 100%;
 }
 
 #start-button {

@@ -6,6 +6,7 @@ var mainBox = document.getElementById("main-content");
 var questionBox = document.getElementById("question-box");
 var questionText = document.getElementById("question-text");
 var answerEvent = document.getElementById("answer-event");
+var message = document.getElementById("correct-message");
 var highScoreForm = document.getElementById("highscore-form");
 
 var timeLeft = 100;
@@ -13,16 +14,18 @@ var showMode = "game";
 
 // declaring the empty variable countdown on the global scope to serve as the target of setInterval, and to be accessible outside of function scope. 
 var countdown;
+startButton.addEventListener("click", startGame);
+highScoreButton.addEventListener("click", viewHighScores);
 
 function startGame(){
-    // this line clears the HTML contents of <main> to prepare the page for population by the quiz questions in <section id="question-box"></section>
-    mainBox.innerHTML = "";
+    // this line below hides the contents of <main> to prepare the page for population by the quiz questions in <section id="question-box"></section>
+    mainBox.setAttribute("style", "display: none");
 
     countdown = setInterval(function(){
         timeLeft--;
         timeDisplay.textContent = timeLeft;
 
-        if (timeLeft === 0){
+        if (timeLeft <= 0){
             clearInterval(countdown);
             alert("Game Over! Score ZERO")
             gameOver();
@@ -33,28 +36,23 @@ function startGame(){
 }
 
 function gameOver(){
+    questionBox.setAttribute("style", "display: none");
     highScoreForm.parentElement.setAttribute("style", "display: block");
 }
 
 function viewHighScores(){
     if (showMode === "game"){
         highScoreButton.textContent = "Back to main";
+        mainBox.setAttribute("style", "display: none");
         // make scores display
         showMode = "scores";
     } else {
-        showMode = "game";
-        // make game come back
+        mainBox.setAttribute("style", "display: block");
         highScoreButton.textContent = "View High Scores";
+        showMode = "game";
     }
     
 }
-
-startButton.addEventListener("click", startGame)
-highScoreButton.addEventListener("click", viewHighScores)
-
-// questions will be housed in the section id="question-box", pointed w/ questionBox
-// each question's text will go into the <h2 id="question-text">, pointed w/ questionText.
-// each question will have four buttons whose textContent is each answer.
 
 function runQuestion1(){
     questionText.textContent = "Your first question will be regarding the French language... Which of the following is the correct translation of \"A Pineapple\"?";
@@ -74,12 +72,14 @@ function runQuestion1(){
     answer3.textContent = "3. une pinpomme";
     answer4.textContent = "4. une pinape";
 
+    // the following event listener checks for a click on any of the answer buttons created above. When a click occurs, the function targets the button that caused the event to occur with "var choice = event.target" and then compares the value assigned to its parent <div> to the correct answer choice, which in this case is "1". If any of the other three buttons are clicked, then the else condition displays an appropriate message and reduces timeLeft by 10.
     answerEvent.addEventListener("click", function(event){
         var choice = event.target;
         if (choice.parentElement.getAttribute("value") === "1"){
-            console.log("I'm a happy ganache");
+            message.textContent = "Correct!";
         } else {
-            console.log("you lose bye bye")
+            message.textContent = "Incorrect! -10 seconds...";
+            timeLeft -= 10;
         }
     });
 
