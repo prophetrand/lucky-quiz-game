@@ -8,7 +8,9 @@
 
 header {
     background-color: maroon;
+    border: 4px solid black;
     color: #F0FFF0;
+    font-size: 20px;
     margin: 5px;
     padding: 10px;
     height: 40px;
@@ -16,4 +18,32 @@ header {
 
 main {
     text-align: center;
+    width: 40%;
+    margin: auto;
+}
+
+main p {
+    font-size: 24px;
+}
+
+section {
+    text-align: left;
+    width: 40%;
+    margin: auto;
+}
+
+section div button {
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: maroon;
+    color: #F0FFF0;
+}
+
+#start-button {
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: maroon;
+    color: #F0FFF0;
 }
