@@ -7,19 +7,35 @@ var questionBox = document.getElementById("question-box");
 var questionText = document.getElementById("question-text");
 var answerEvent = document.getElementById("answer-event");
 var message = document.getElementById("correct-message");
+var endScreen = document.getElementById("end-screen");
 var highScoreForm = document.getElementById("highscore-form");
+var allScores = document.getElementById("all-scores");
 
 var timeLeft = 100;
 var showMode = "game";
 
 // declaring the empty variable countdown on the global scope to serve as the target of setInterval, and to be accessible outside of function scope. 
 var countdown;
+
+// declaring answer buttons that will also be accessible from the global scope, and therefore by multiple different functions in child scope.
+var answer1 = document.createElement("button");
+var answer2 = document.createElement("button");
+var answer3 = document.createElement("button");
+var answer4 = document.createElement("button");
+
+// these appendChild() commands place each answer button into one of the four <div>'s in the "question-box" <section>. Each button goes into a separate <div> that has its value equal to 1, 2, 3, or 4 allowing me to later refer to the correct answer by its unique value number.
+answerEvent.children[0].appendChild(answer1);
+answerEvent.children[1].appendChild(answer2);
+answerEvent.children[2].appendChild(answer3);
+answerEvent.children[3].appendChild(answer4);
+
 startButton.addEventListener("click", startGame);
 highScoreButton.addEventListener("click", viewHighScores);
 
 function startGame(){
     // this line below hides the contents of <main> to prepare the page for population by the quiz questions in <section id="question-box"></section>
     mainBox.setAttribute("style", "display: none");
+    questionBox.setAttribute("style", "display: block");
 
     countdown = setInterval(function(){
         timeLeft--;
@@ -32,19 +48,20 @@ function startGame(){
         }
     }, 1000);
 
+    // after setting up the countdown timer and displaying it to timeDisplay, the function runQuestion1() is called to begin the quiz.
     runQuestion1();
 }
 
 function gameOver(){
     questionBox.setAttribute("style", "display: none");
-    highScoreForm.parentElement.setAttribute("style", "display: block");
+    endScreen.setAttribute("style", "display: block");
 }
 
 function viewHighScores(){
     if (showMode === "game"){
         highScoreButton.textContent = "Back to main";
         mainBox.setAttribute("style", "display: none");
-        // make scores display
+        allScores.setAttribute("style", "display: block");
         showMode = "scores";
     } else {
         mainBox.setAttribute("style", "display: block");
@@ -56,17 +73,7 @@ function viewHighScores(){
 
 function runQuestion1(){
     questionText.textContent = "Your first question will be regarding the French language... Which of the following is the correct translation of \"A Pineapple\"?";
-    var answer1 = document.createElement("button");
-    var answer2 = document.createElement("button");
-    var answer3 = document.createElement("button");
-    var answer4 = document.createElement("button");
-
-    // these appendChild() commands place each answer button into one of the four <div>'s in the "question-box" <section>. Each button goes into a separate <div> that has its value equal to 1, 2, 3, or 4 allowing me to later refer to the correct answer by its unique value number.
-    answerEvent.children[0].appendChild(answer1);
-    answerEvent.children[1].appendChild(answer2);
-    answerEvent.children[2].appendChild(answer3);
-    answerEvent.children[3].appendChild(answer4);
-
+    
     answer1.textContent = "1. un ananas";
     answer2.textContent = "2. un pamplemousse";
     answer3.textContent = "3. une pinpomme";
@@ -81,8 +88,28 @@ function runQuestion1(){
             message.textContent = "Incorrect! -10 seconds...";
             timeLeft -= 10;
         }
+        runQuestion2();
     });
+}
 
+function runQuestion2(){
+    questionText.textContent = "Massive Question Number 2";
+
+    answer1.textContent = "1. ";
+    answer2.textContent = "2. ";
+    answer3.textContent = "3. ";
+    answer4.textContent = "4. ";
+
+    answerEvent.addEventListener("click", function(event){
+        var choice = event.target;
+        if (choice.parentElement.getAttribute("value") === "4"){
+            message.textContent = "Correct!";
+        } else {
+            message.textContent = "Incorrect! -10 seconds...";
+            timeLeft -= 10;
+        }
+    });
+// runQuestion3();
 }
 
 

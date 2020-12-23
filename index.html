@@ -21,7 +21,7 @@
 
   </main>
 
-  <section id="question-box" style="display: block">
+  <section id="question-box" style="display: none">
     <h2 id="question-text"></h2>
     <div id="answer-event">
       <div value="1"></div>
@@ -32,12 +32,17 @@
     <h3 id="correct-message"></h3>
   </section>
 
-  <!-- this section houses the form to submit a name for the high score table, and is hidden by default -->
-  <section style="display: none">
+  <!-- this section houses the form to submit a name for the high score table, and is hidden by default until the gameOver() is called -->
+  <section id="end-screen" style="display: none">
     <form id="highscore-form">
       <input placeholder="name" id="name" />
     </form>
   </section>
+
+  <section id="all-scores" style="display: none">
+    <ul>boinggggggg</ul>
+  </section>
+  
 
   <script type="text/javascript" src="script.js"></script>
 </body>

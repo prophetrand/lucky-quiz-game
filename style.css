@@ -32,6 +32,11 @@ section {
     margin: auto;
 }
 
+form {
+    text-align: center;
+    margin: 100px auto;
+}
+
 section div button {
     text-align: left;
     border-radius: 8px;
