@@ -84,6 +84,17 @@ function runQuestion1(){
     answerEvent.addEventListener("click", bigQ1);
 }
 
+function bigQ1(event){
+    var choice = event.target;
+    if (choice.parentElement.getAttribute("value") === "1"){
+        message.textContent = "Correct!";
+    } else {
+        message.textContent = "Incorrect! -10 seconds...";
+        timeLeft -= 10;
+    }
+    runQuestion2();
+}
+
 function runQuestion2(){
     answerEvent.removeEventListener("click", bigQ1);
     
@@ -97,7 +108,161 @@ function runQuestion2(){
     answerEvent.addEventListener("click", bigQ2);
 }
 
+function bigQ2(event){
+    var choice = event.target;
+    if (choice.parentElement.getAttribute("value") === "4"){
+        message.textContent = "Correct!";
+    } else {
+        message.textContent = "Incorrect! -10 seconds...";
+        timeLeft -= 10;
+    }
+    runQuestion3();
+}
 
+function runQuestion3(){
+    answerEvent.removeEventListener("click", bigQ2);
+    
+    questionText.textContent = 'Which of these Seinfeld characters matches the "Four-Temperament" personality trope of "Sanguine"?';
+
+    answer1.textContent = "1. Jerry Seinfeld";
+    answer2.textContent = "2. Cosmo Kramer";
+    answer3.textContent = "3. Elaine Benes";
+    answer4.textContent = "4. George Costanza";
+
+    answerEvent.addEventListener("click", bigQ3);
+}
+
+function bigQ3(event){
+    var choice = event.target;
+    if (choice.parentElement.getAttribute("value") === "4"){
+        message.textContent = "Correct!";
+    } else {
+        message.textContent = "Incorrect! -10 seconds...";
+        timeLeft -= 10;
+    }
+    runQuestion4();
+}
+
+function runQuestion4(){
+    answerEvent.removeEventListener("click", bigQ3);
+    
+    questionText.textContent = "Which of the following is NOT a real breed of Terrier dog?";
+
+    answer1.textContent = "1. ";
+    answer2.textContent = "2. ";
+    answer3.textContent = "3. ";
+    answer4.textContent = "4. ";
+
+    answerEvent.addEventListener("click", bigQ4);
+}
+
+function bigQ4(event){
+    var choice = event.target;
+    if (choice.parentElement.getAttribute("value") === "4"){
+        message.textContent = "Correct!";
+    } else {
+        message.textContent = "Incorrect! -10 seconds...";
+        timeLeft -= 10;
+    }
+    runQuestion5();
+}
+
+function runQuestion5(){
+    answerEvent.removeEventListener("click", bigQ4);
+    
+    questionText.textContent = "Which of the following is NOT a real breed of Terrier dog?";
+
+    answer1.textContent = "1. ";
+    answer2.textContent = "2. ";
+    answer3.textContent = "3. ";
+    answer4.textContent = "4. ";
+
+    answerEvent.addEventListener("click", bigQ5);
+}
+
+function bigQ5(event){
+    var choice = event.target;
+    if (choice.parentElement.getAttribute("value") === "4"){
+        message.textContent = "Correct!";
+    } else {
+        message.textContent = "Incorrect! -10 seconds...";
+        timeLeft -= 10;
+    }
+    runQuestion6();
+}
+
+function runQuestion6(){
+    answerEvent.removeEventListener("click", bigQ5);
+    
+    questionText.textContent = "Which of the following is NOT a real breed of Terrier dog?";
+
+    answer1.textContent = "1. ";
+    answer2.textContent = "2. ";
+    answer3.textContent = "3. ";
+    answer4.textContent = "4. ";
+
+    answerEvent.addEventListener("click", bigQ6);
+}
+
+function bigQ6(event){
+    var choice = event.target;
+    if (choice.parentElement.getAttribute("value") === "4"){
+        message.textContent = "Correct!";
+    } else {
+        message.textContent = "Incorrect! -10 seconds...";
+        timeLeft -= 10;
+    }
+    runQuestion7();
+}
+
+function runQuestion7(){
+    answerEvent.removeEventListener("click", bigQ6);
+    
+    questionText.textContent = "Which of the following is NOT a real breed of Terrier dog?";
+
+    answer1.textContent = "1. ";
+    answer2.textContent = "2. ";
+    answer3.textContent = "3. ";
+    answer4.textContent = "4. ";
+
+    answerEvent.addEventListener("click", bigQ7);
+}
+
+function bigQ7(event){
+    var choice = event.target;
+    if (choice.parentElement.getAttribute("value") === "4"){
+        message.textContent = "Correct!";
+    } else {
+        message.textContent = "Incorrect! -10 seconds...";
+        timeLeft -= 10;
+    }
+    runQuestion8();
+}
+
+function runQuestion8(){
+    answerEvent.removeEventListener("click", bigQ7);
+    
+    questionText.textContent = "Which of the following is NOT a real breed of Terrier dog?";
+
+    answer1.textContent = "1. ";
+    answer2.textContent = "2. ";
+    answer3.textContent = "3. ";
+    answer4.textContent = "4. ";
+
+    answerEvent.addEventListener("click", bigQ8);
+}
+
+function bigQ8(event){
+    var choice = event.target;
+    if (choice.parentElement.getAttribute("value") === "4"){
+        message.textContent = "Correct!";
+    } else {
+        message.textContent = "Incorrect! -10 seconds...";
+        timeLeft -= 10;
+    }
+    alert("Game Complete! You have answered all questions!")
+    gameOver();
+}
 
 // The following will be useful for creating a form for high score name entry, and was taken from 12-Ins_Preventing_Default_Events
 {/* <form >
@@ -108,25 +273,3 @@ function runQuestion2(){
       <h4 id="response"></h4>
     </div>
 </form> */}
-
-function bigQ1(event){
-    var choice = event.target;
-    if (choice.parentElement.getAttribute("value") === "1"){
-        message.textContent = "Correct!";
-    } else {
-        message.textContent = "Incorrect! -10 seconds...";
-        timeLeft -= 10;
-    }
-    runQuestion2();
-}
-
-function bigQ2(event){
-    var choice = event.target;
-    if (choice.parentElement.getAttribute("value") === "4"){
-        message.textContent = "Correct!";
-    } else {
-        message.textContent = "Incorrect! -10 seconds...";
-        timeLeft -= 10;
-    }
-    // runQuestion3();
-}
