@@ -88,7 +88,7 @@ function addToList(event){
     scoresList.appendChild(scoreItem);
     allScores.setAttribute("style", "display: block");
 
-    localStorage.setItem("Player and Score", scoreItem.textContent)
+    localStorage.setItem("Player and Score", scoreItem.textContent);
 }
 
 function runQuestion1(){
