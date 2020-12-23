@@ -11,7 +11,7 @@ var endScreen = document.getElementById("end-screen");
 var highScoreForm = document.getElementById("highscore-form");
 var allScores = document.getElementById("all-scores");
 
-var timeLeft = 100;
+var timeLeft = 81;
 var showMode = "game";
 
 // declaring the empty variable countdown on the global scope to serve as the target of setInterval, and to be accessible outside of function scope. 
@@ -31,6 +31,7 @@ answerEvent.children[3].appendChild(answer4);
 
 startButton.addEventListener("click", startGame);
 highScoreButton.addEventListener("click", viewHighScores);
+highScoreForm.addEventListener("submit", addToList());
 
 function startGame(){
     // this line below hides the contents of <main> to prepare the page for population by the quiz questions in <section id="question-box"></section>
@@ -42,8 +43,8 @@ function startGame(){
         timeDisplay.textContent = timeLeft;
 
         if (timeLeft <= 0){
-            clearInterval(countdown);
             alert("Game Over! Score ZERO")
+            // the gameOver() function includes clearInterval(countdown) so I am avoiding calling it twice by writing it here as well.
             gameOver();
         }
     }, 1000);
@@ -53,8 +54,10 @@ function startGame(){
 }
 
 function gameOver(){
+    clearInterval(countdown);
     questionBox.setAttribute("style", "display: none");
     endScreen.setAttribute("style", "display: block");
+    endScreen.children[0].textContent = "Your score is: " + timeLeft;
 }
 
 function viewHighScores(){
@@ -72,8 +75,12 @@ function viewHighScores(){
     
 }
 
+function addToList(){
+    
+}
+
 function runQuestion1(){
-    questionText.textContent = "Your first question will be regarding the French language... Which of the following is the correct translation of \"A Pineapple\"?";
+    questionText.textContent = "Your first question will be regarding the French language... Which of the following is the correct translation of \"Pineapple\"?";
     
     answer1.textContent = "1. un ananas";
     answer2.textContent = "2. un pamplemousse";
@@ -134,7 +141,7 @@ function runQuestion3(){
 
 function bigQ3(event){
     var choice = event.target;
-    if (choice.parentElement.getAttribute("value") === "4"){
+    if (choice.parentElement.getAttribute("value") === "2"){
         message.textContent = "Correct!";
     } else {
         message.textContent = "Incorrect! -10 seconds...";
@@ -146,12 +153,12 @@ function bigQ3(event){
 function runQuestion4(){
     answerEvent.removeEventListener("click", bigQ3);
     
-    questionText.textContent = "Which of the following is NOT a real breed of Terrier dog?";
+    questionText.textContent = "Who won the 1992 Summer Olympics in Barcelona?";
 
-    answer1.textContent = "1. ";
-    answer2.textContent = "2. ";
-    answer3.textContent = "3. ";
-    answer4.textContent = "4. ";
+    answer1.textContent = "1. Unites States of America";
+    answer2.textContent = "2. Germany";
+    answer3.textContent = "3. China";
+    answer4.textContent = "4. Unified Team of Former Soviet Republics";
 
     answerEvent.addEventListener("click", bigQ4);
 }
@@ -170,19 +177,19 @@ function bigQ4(event){
 function runQuestion5(){
     answerEvent.removeEventListener("click", bigQ4);
     
-    questionText.textContent = "Which of the following is NOT a real breed of Terrier dog?";
+    questionText.textContent = "How many known species of bat are there?";
 
-    answer1.textContent = "1. ";
-    answer2.textContent = "2. ";
-    answer3.textContent = "3. ";
-    answer4.textContent = "4. ";
+    answer1.textContent = "1. ~1.6 million";
+    answer2.textContent = "2. ~8000";
+    answer3.textContent = "3. ~1400";
+    answer4.textContent = "4. ~600";
 
     answerEvent.addEventListener("click", bigQ5);
 }
 
 function bigQ5(event){
     var choice = event.target;
-    if (choice.parentElement.getAttribute("value") === "4"){
+    if (choice.parentElement.getAttribute("value") === "3"){
         message.textContent = "Correct!";
     } else {
         message.textContent = "Incorrect! -10 seconds...";
@@ -194,19 +201,19 @@ function bigQ5(event){
 function runQuestion6(){
     answerEvent.removeEventListener("click", bigQ5);
     
-    questionText.textContent = "Which of the following is NOT a real breed of Terrier dog?";
+    questionText.textContent = "Which of the following chemicals has fewer than 3 carbon atoms in a molecule?";
 
-    answer1.textContent = "1. ";
-    answer2.textContent = "2. ";
-    answer3.textContent = "3. ";
-    answer4.textContent = "4. ";
+    answer1.textContent = "1. Benzene";
+    answer2.textContent = "2. Methane";
+    answer3.textContent = "3. Propene";
+    answer4.textContent = "4. Butanol";
 
     answerEvent.addEventListener("click", bigQ6);
 }
 
 function bigQ6(event){
     var choice = event.target;
-    if (choice.parentElement.getAttribute("value") === "4"){
+    if (choice.parentElement.getAttribute("value") === "2"){
         message.textContent = "Correct!";
     } else {
         message.textContent = "Incorrect! -10 seconds...";
@@ -218,19 +225,19 @@ function bigQ6(event){
 function runQuestion7(){
     answerEvent.removeEventListener("click", bigQ6);
     
-    questionText.textContent = "Which of the following is NOT a real breed of Terrier dog?";
+    questionText.textContent = "Which of these cooking oils has the highest smoke point?";
 
-    answer1.textContent = "1. ";
-    answer2.textContent = "2. ";
-    answer3.textContent = "3. ";
-    answer4.textContent = "4. ";
+    answer1.textContent = "1. Soybean Oil";
+    answer2.textContent = "2. Olive Oil";
+    answer3.textContent = "3. Grapeseed Oil";
+    answer4.textContent = "4. Canola Oil";
 
     answerEvent.addEventListener("click", bigQ7);
 }
 
 function bigQ7(event){
     var choice = event.target;
-    if (choice.parentElement.getAttribute("value") === "4"){
+    if (choice.parentElement.getAttribute("value") === "1"){
         message.textContent = "Correct!";
     } else {
         message.textContent = "Incorrect! -10 seconds...";
@@ -242,19 +249,19 @@ function bigQ7(event){
 function runQuestion8(){
     answerEvent.removeEventListener("click", bigQ7);
     
-    questionText.textContent = "Which of the following is NOT a real breed of Terrier dog?";
+    questionText.textContent = 'The French language has come back to haunt you... Which of the following is the correct French term for "a Journey"?';
 
-    answer1.textContent = "1. ";
-    answer2.textContent = "2. ";
-    answer3.textContent = "3. ";
-    answer4.textContent = "4. ";
+    answer1.textContent = "1. une épopée";
+    answer2.textContent = "2. un voyage";
+    answer3.textContent = "3. une journée";
+    answer4.textContent = "4. un jeu";
 
     answerEvent.addEventListener("click", bigQ8);
 }
 
 function bigQ8(event){
     var choice = event.target;
-    if (choice.parentElement.getAttribute("value") === "4"){
+    if (choice.parentElement.getAttribute("value") === "2"){
         message.textContent = "Correct!";
     } else {
         message.textContent = "Incorrect! -10 seconds...";
