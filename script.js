@@ -33,7 +33,7 @@ function startGame(){
 }
 
 function gameOver(){
-
+    highScoreForm.parentElement.setAttribute("style", "display: block");
 }
 
 function viewHighScores(){
@@ -63,18 +63,24 @@ function runQuestion1(){
     var answer3 = document.createElement("button");
     var answer4 = document.createElement("button");
 
-    answerEvent.appendChild(answer1);
-    answerEvent.appendChild(answer2);
-    answerEvent.appendChild(answer3);
-    answerEvent.appendChild(answer4);
+    // these appendChild() commands place each answer button into one of the four <div>'s in the "question-box" <section>. Each button goes into a separate <div> that has its value equal to 1, 2, 3, or 4 allowing me to later refer to the correct answer by its unique value number.
+    answerEvent.children[0].appendChild(answer1);
+    answerEvent.children[1].appendChild(answer2);
+    answerEvent.children[2].appendChild(answer3);
+    answerEvent.children[3].appendChild(answer4);
 
     answer1.textContent = "1. un ananas";
     answer2.textContent = "2. un pamplemousse";
     answer3.textContent = "3. une pinpomme";
     answer4.textContent = "4. une pinape";
 
-    answerEvent.addEventListener("click", function(){
-        console.log("Voila, c'est magnifique")
+    answerEvent.addEventListener("click", function(event){
+        var choice = event.target;
+        if (choice.parentElement.getAttribute("value") === "1"){
+            console.log("I'm a happy ganache");
+        } else {
+            console.log("you lose bye bye")
+        }
     });
 
 }
