@@ -70,7 +70,7 @@ function runQuestion1(){
 
     answer1.textContent = "un ananas";
     answer2.textContent = "un pamplemousse";
-    answer3.textContent = "une poire";
+    answer3.textContent = "une pinpomme";
     answer4.textContent = "une pinape";
 
     answerEvent.addEventListener("click", function(){
