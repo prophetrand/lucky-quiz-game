@@ -66,6 +66,7 @@ function viewHighScores(){
     } else {
         mainBox.setAttribute("style", "display: block");
         highScoreButton.textContent = "View High Scores";
+        allScores.setAttribute("style", "display: none");
         showMode = "game";
     }
     
@@ -80,38 +81,21 @@ function runQuestion1(){
     answer4.textContent = "4. une pinape";
 
     // the following event listener checks for a click on any of the answer buttons created above. When a click occurs, the function targets the button that caused the event to occur with "var choice = event.target" and then compares the value assigned to its parent <div> to the correct answer choice, which in this case is "1". If any of the other three buttons are clicked, then the else condition displays an appropriate message and reduces timeLeft by 10.
-    answerEvent.addEventListener("click", function(event){
-        var choice = event.target;
-        if (choice.parentElement.getAttribute("value") === "1"){
-            message.textContent = "Correct!";
-        } else {
-            message.textContent = "Incorrect! -10 seconds...";
-            timeLeft -= 10;
-        }
-        runQuestion2();
-    });
+    answerEvent.addEventListener("click", bigQ1);
 }
 
 function runQuestion2(){
-    questionText.textContent = "Massive Question Number 2";
+    answerEvent.removeEventListener("click", bigQ1);
+    
+    questionText.textContent = "Which of the following is NOT a real breed of Terrier dog?";
 
-    answer1.textContent = "1. ";
-    answer2.textContent = "2. ";
-    answer3.textContent = "3. ";
-    answer4.textContent = "4. ";
+    answer1.textContent = "1. Airedale Terrier";
+    answer2.textContent = "2. Cairn Terrier";
+    answer3.textContent = "3. West Highland White Terrier";
+    answer4.textContent = "4. Merton Borough Terrier";
 
-    answerEvent.addEventListener("click", function(event){
-        var choice = event.target;
-        if (choice.parentElement.getAttribute("value") === "4"){
-            message.textContent = "Correct!";
-        } else {
-            message.textContent = "Incorrect! -10 seconds...";
-            timeLeft -= 10;
-        }
-    });
-// runQuestion3();
+    answerEvent.addEventListener("click", bigQ2);
 }
-
 
 
 
@@ -125,4 +109,24 @@ function runQuestion2(){
     </div>
 </form> */}
 
-// Check here: https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp  to see how to make an element show/hide using no Bootstrap. Basically changing display property to/from "none"/"block". The element won't take up any space when it's set to display: "none" which i'll probably do with a .setAttribute() method.
+function bigQ1(event){
+    var choice = event.target;
+    if (choice.parentElement.getAttribute("value") === "1"){
+        message.textContent = "Correct!";
+    } else {
+        message.textContent = "Incorrect! -10 seconds...";
+        timeLeft -= 10;
+    }
+    runQuestion2();
+}
+
+function bigQ2(event){
+    var choice = event.target;
+    if (choice.parentElement.getAttribute("value") === "4"){
+        message.textContent = "Correct!";
+    } else {
+        message.textContent = "Incorrect! -10 seconds...";
+        timeLeft -= 10;
+    }
+    // runQuestion3();
+}
